@@ -1,2 +1,2 @@
 # algoritmos-ordenacao
-Trabalho para matéria de projeto e análise de algoritmos
+Trabalho para matéria de análise e projeto de algoritmos
