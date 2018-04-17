@@ -2,13 +2,13 @@ package com.github.siilas.apa.service;
 
 import org.springframework.stereotype.Component;
 
-import com.github.siilas.apa.model.Sorted;
+import com.github.siilas.apa.enums.Algoritmos;
 
 @Component
 public class InsertionSort implements Sortable {
 
     @Override
-    public Sorted sort(Integer[] vetor) {
+    public Integer[] specificSort(Integer[] vetor) {
         for (int i = 1; i < vetor.length; i++) {
             int chave = vetor[i];
             int aux = i - 1;
@@ -18,7 +18,12 @@ public class InsertionSort implements Sortable {
                 aux = aux - 1;
             }
         }
-        return null;
+        return vetor;
+    }
+
+    @Override
+    public Algoritmos getAlgoritmo() {
+        return Algoritmos.INSERTION_SORT;
     }
 
 }
