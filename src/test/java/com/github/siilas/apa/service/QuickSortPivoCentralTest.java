@@ -9,13 +9,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class InsertionSortTest implements SortableTest {
-    
-    private InsertionSort service;
+public class QuickSortPivoCentralTest implements SortableTest {
+
+    private QuickSortPivoCentral service;
     
     @Before
     public void init() {
-        service = new InsertionSort();
+        service = new QuickSortPivoCentral();
     }
     
     @Test
@@ -38,5 +38,5 @@ public class InsertionSortTest implements SortableTest {
         Integer[] vetorOrdenado = service.specificSort(ARRAY_DECRESCENTE);
         Assert.assertArrayEquals(ARRAY_ORDENADO, vetorOrdenado); 
     }
-
+    
 }

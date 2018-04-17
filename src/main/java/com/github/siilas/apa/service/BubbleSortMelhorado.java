@@ -9,7 +9,7 @@ public class BubbleSortMelhorado implements Sortable {
 
     @Override
     public Integer[] specificSort(Integer[] vetor) {
-        return null;
+        return vetor;
     }
 
     @Override

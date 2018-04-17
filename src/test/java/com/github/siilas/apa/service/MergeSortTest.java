@@ -9,13 +9,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class InsertionSortTest implements SortableTest {
+public class MergeSortTest implements SortableTest {
     
-    private InsertionSort service;
+    private MergeSort service;
     
     @Before
     public void init() {
-        service = new InsertionSort();
+        service = new MergeSort();
     }
     
     @Test
@@ -38,5 +38,5 @@ public class InsertionSortTest implements SortableTest {
         Integer[] vetorOrdenado = service.specificSort(ARRAY_DECRESCENTE);
         Assert.assertArrayEquals(ARRAY_ORDENADO, vetorOrdenado); 
     }
-
+    
 }

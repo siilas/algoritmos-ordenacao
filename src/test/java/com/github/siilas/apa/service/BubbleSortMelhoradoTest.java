@@ -9,13 +9,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class InsertionSortTest implements SortableTest {
+public class BubbleSortMelhoradoTest implements SortableTest {
     
-    private InsertionSort service;
+    private BubbleSortMelhorado service;
     
     @Before
     public void init() {
-        service = new InsertionSort();
+        service = new BubbleSortMelhorado();
     }
     
     @Test
