@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import com.github.siilas.apa.enums.Algoritmos;
 import com.github.siilas.apa.enums.Casos;
 import com.github.siilas.apa.exception.ServiceException;
+import com.github.siilas.apa.model.GeradorDeResultados;
 import com.github.siilas.apa.model.Vetor;
 import com.github.siilas.apa.model.Vetores;
-import com.github.siilas.apa.service.ResultadosService;
 import com.github.siilas.apa.strategy.SortableStrategy;
 
 import lombok.val;
@@ -21,29 +21,35 @@ import lombok.extern.slf4j.Slf4j;
 public class CommandLineControlador {
 
     @Autowired
-    private ResultadosService resultadosService;
+    private SortableStrategy sortableStrategy;
     
     @Autowired
-    private SortableStrategy sortableStrategy;
+    private GeradorDeResultados geradorResultados;
     
     public void executar() {
         try {
+            log.info("Início da ordenação");
             val resultados = new ArrayList<Vetores>();
             for (Casos caso : Casos.values()) {
+                log.info("Caso: " + caso.getDescricao());
                 Vetores vetores = caso.getGerador().gerarVetores();
                 for (Vetor vetor : vetores.getVetores()) {
+                    log.info("Tamanho: " + vetor.getVetorOriginal().length);
                     for (Algoritmos algoritmo : Algoritmos.values()) {
+                        log.info("Ordenação: " + algoritmo.getDescricao());
                         sortableStrategy.getStrategy(algoritmo).sort(vetor);
                     }
                 }
                 resultados.add(vetores);
             }
-            resultadosService.gerarResultados(resultados);
+            log.info("Fim da ordenação e gerando resultados");
+            geradorResultados.gerarResultados(resultados);
+            log.info("Concluído");
         } catch (ServiceException e) {
             log.error(e.getMessage());
         } catch (Exception e) {
             log.error("Erro ao executar algoritmos", e);
         }
     }
-    
+
 }

@@ -9,6 +9,18 @@ public class BubbleSortMelhorado implements Sortable {
 
     @Override
     public Integer[] specificSort(Integer[] vetor) {
+        boolean troca = true;
+        for (int i = (vetor.length - 1); (i >= 1 && troca); i--) {
+            troca = false;
+            for (int j = 0; j < i; j++) {
+                if (vetor[j] > vetor[j + 1]) {
+                    int aux = vetor[j];
+                    vetor[j] = vetor[j + 1];
+                    vetor[j + 1] = aux;
+                    troca = true;
+                }
+            }
+        }
         return vetor;
     }
 

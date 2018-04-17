@@ -1,13 +1,11 @@
-package com.github.siilas.apa.service;
+package com.github.siilas.apa.model;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.github.siilas.apa.model.Vetores;
-
 @Component
-public class ResultadosService {
+public class GeradorDeResultados {
 
     public void gerarResultados(List<Vetores> resultados) {
         
