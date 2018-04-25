@@ -13,7 +13,6 @@ import lombok.Setter;
 public class Vetores {
 
     private Casos caso;
-    private Integer size;
     private List<Vetor> vetores = new ArrayList<>();
     
 }

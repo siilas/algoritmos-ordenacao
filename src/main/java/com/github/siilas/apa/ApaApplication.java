@@ -1,6 +1,7 @@
 package com.github.siilas.apa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,9 @@ public class ApaApplication implements CommandLineRunner {
     private CommandLineControlador commandLineControlador;
     
     public static void main(String[] args) {
-        SpringApplication.run(ApaApplication.class, args);
+        SpringApplication app = new SpringApplication(ApaApplication.class);
+        app.setBannerMode(Banner.Mode.OFF);
+        app.run(args);
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface Sortable {
     public default void sort(Vetor vetor) {
         val time = Stopwatch.createStarted();
         val vetorOrdenado = specificSort(vetor.getVetorOriginal().clone());
-        val tempoDeExecucao = time.stop().elapsed(TimeUnit.MILLISECONDS);
+        val tempoDeExecucao = time.stop().elapsed(TimeUnit.NANOSECONDS);
         vetor.setAlgoritmo(getAlgoritmo());
         vetor.setTime(tempoDeExecucao);
         vetor.setVetorOrdenado(vetorOrdenado);

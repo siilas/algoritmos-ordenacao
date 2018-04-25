@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Vetor {
 
     private Long time;
+    private Integer size;
     private Algoritmos algoritmo;
     private Integer[] vetorOriginal;
     private Integer[] vetorOrdenado;

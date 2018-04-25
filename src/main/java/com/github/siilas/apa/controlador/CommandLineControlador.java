@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.siilas.apa.enums.Algoritmos;
 import com.github.siilas.apa.enums.Casos;
 import com.github.siilas.apa.exception.ServiceException;
 import com.github.siilas.apa.model.GeradorDeResultados;
@@ -29,16 +28,17 @@ public class CommandLineControlador {
     public void executar() {
         try {
             log.info("Início da ordenação");
+            
             val resultados = new ArrayList<Vetores>();
             for (Casos caso : Casos.values()) {
                 log.info("Caso: " + caso.getDescricao());
+                
                 Vetores vetores = caso.getGerador().gerarVetores();
                 for (Vetor vetor : vetores.getVetores()) {
                     log.info("Tamanho: " + vetor.getVetorOriginal().length);
-                    for (Algoritmos algoritmo : Algoritmos.values()) {
-                        log.info("Ordenação: " + algoritmo.getDescricao());
-                        sortableStrategy.getStrategy(algoritmo).sort(vetor);
-                    }
+                    
+                    log.info("Ordenação: " + vetor.getAlgoritmo().getDescricao());
+                    sortableStrategy.getStrategy(vetor.getAlgoritmo()).sort(vetor);
                 }
                 resultados.add(vetores);
             }
