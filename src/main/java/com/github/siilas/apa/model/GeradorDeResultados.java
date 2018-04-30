@@ -1,5 +1,6 @@
 package com.github.siilas.apa.model;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import com.github.siilas.apa.exception.ServiceException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class GeradorDeResultados {
 
@@ -32,12 +36,14 @@ public class GeradorDeResultados {
                 linha.createCell(contadorColuna++).setCellValue(vetor.getTime());
             }
         }
-        try (FileOutputStream outputStream = new FileOutputStream("resultados.xlsx")) {
+        File arquivoFinal = new File(System.getProperty("java.io.tmpdir") + File.separator + "resultados.xlsx");
+        try (FileOutputStream outputStream = new FileOutputStream(arquivoFinal)) {
             arquivo.write(outputStream);
             arquivo.close();
         } catch (Exception e) {
             throw new ServiceException("Erro ao gerar resultados");
         }
+        log.info("Arquivo com resultados: " + arquivoFinal.getAbsolutePath());
     }
     
 }
