@@ -9,7 +9,9 @@ public class QuickSortPivoPrimeiro implements Sortable {
 
     @Override
     public Integer[] specificSort(Integer[] vetor) {
-        ordena(vetor, 0, (vetor.length - 1));
+        if (vetor.length <= 10000) {
+            ordena(vetor, 0, (vetor.length - 1));
+        }
         return vetor;
     }
 
@@ -17,7 +19,7 @@ public class QuickSortPivoPrimeiro implements Sortable {
     public Algoritmos getAlgoritmo() {
         return Algoritmos.QUICK_SORT_PIVO_PRIMEIRO;
     }
-    
+
     private void ordena(Integer vetor[], int inicio, int fim) {
         if (inicio < fim) {
             int pi = particiona(vetor, inicio, fim);
@@ -27,19 +29,24 @@ public class QuickSortPivoPrimeiro implements Sortable {
     }
 
     private int particiona(Integer[] vetor, int inicio, int fim) {
-        int pivot = vetor[inicio];
-        int i = (inicio + 1);
-        for (int j = (inicio + 1); j <= fim; j++) {
-            if (vetor[j] < pivot) {
-                int temp = vetor[i];
-                vetor[i] = vetor[j];
-                vetor[j] = temp;
+        int pivo = vetor[inicio];
+        int i = inicio + 1, f = fim;
+        while (i <= f) {
+            if (vetor[i] <= pivo) {
                 i++;
+            } else if (pivo < vetor[f]) {
+                f--;
+            } else {
+                int troca = vetor[i];
+                vetor[i] = vetor[f];
+                vetor[f] = troca;
+                i++;
+                f--;
             }
         }
-        vetor[inicio] = vetor[i - 1];
-        vetor[i - 1] = pivot;
-        return i - 1;
+        vetor[inicio] = vetor[f];
+        vetor[f] = pivo;
+        return f;
     }
 
 }

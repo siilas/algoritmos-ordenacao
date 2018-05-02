@@ -10,15 +10,14 @@ public class HeapSort implements Sortable {
     @Override
     public Integer[] specificSort(Integer[] vetor) {
         int tamanho = vetor.length;
-        int troca;
-        for (int indice = tamanho / 2; indice >= 0; indice--) {
-            constroiHeap(vetor, tamanho, indice);
+        for (int i = (tamanho / 2) - 1; i >= 0; i--) {
+            constroiHeap(vetor, tamanho, i);
         }
-        while (tamanho > 0) {
-            troca = vetor[0];
-            vetor[0] = vetor[tamanho];
-            vetor[tamanho] = troca;
-            constroiHeap(vetor, --tamanho, 0);
+        for (int i = (tamanho - 1); i >= 0; i--) {
+            int temp = vetor[0];
+            vetor[0] = vetor[i];
+            vetor[i] = temp;
+            constroiHeap(vetor, i, 0);
         }
         return vetor;
     }
@@ -28,21 +27,22 @@ public class HeapSort implements Sortable {
         return Algoritmos.HEAP_SORT;
     }
 
-    private void constroiHeap(Integer[] vetor, int tamanho, int indiceRaiz) {
-        int ramificacao, valor;
-        valor = vetor[indiceRaiz];
-        while (indiceRaiz <= tamanho / 2) {
-            ramificacao = 2 * indiceRaiz;
-            if (ramificacao < tamanho && vetor[ramificacao] < vetor[ramificacao + 1]) {
-                ramificacao++;
-            }
-            if (valor >= vetor[ramificacao]) {
-                break;
-            }
-            vetor[indiceRaiz] = vetor[ramificacao];
-            indiceRaiz = ramificacao;
+    private void constroiHeap(Integer[] vetor, int n, int i) {
+        int largest = i;
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+        if (l < n && vetor[l] > vetor[largest]) {
+            largest = l;
         }
-        vetor[indiceRaiz] = valor;
+        if (r < n && vetor[r] > vetor[largest]) {
+            largest = r;
+        }
+        if (largest != i) {
+            int swap = vetor[i];
+            vetor[i] = vetor[largest];
+            vetor[largest] = swap;
+            constroiHeap(vetor, n, largest);
+        }
     }
 
 }
