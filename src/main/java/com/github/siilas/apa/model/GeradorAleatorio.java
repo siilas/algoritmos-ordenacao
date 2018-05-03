@@ -24,6 +24,7 @@ public class GeradorAleatorio implements GeradorDeInformacoes {
                         .vetorOriginal(vetorGerado)
                         .size(size)
                         .algoritmo(algoritmo)
+                        .naoCalculado(false)
                         .build());
             }
         }

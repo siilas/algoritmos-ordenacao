@@ -20,11 +20,10 @@ public interface Sortable {
         val tempoDeExecucao = time.stop().elapsed(TimeUnit.NANOSECONDS);
         vetor.setAlgoritmo(getAlgoritmo());
         vetor.setTime(tempoDeExecucao);
-        
     }
     
-    Integer[] specificSort(Integer[] vetor);
-
     Algoritmos getAlgoritmo();
+
+    Integer[] specificSort(Integer[] vetor);
 
 }
