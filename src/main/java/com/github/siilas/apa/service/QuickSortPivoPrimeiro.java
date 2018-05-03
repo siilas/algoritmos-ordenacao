@@ -9,10 +9,7 @@ public class QuickSortPivoPrimeiro implements Sortable {
 
     @Override
     public Integer[] specificSort(Integer[] vetor) {
-        //Evitando estouro da pilha
-        if (vetor.length <= 10000) {
-            ordena(vetor, 0, (vetor.length - 1));
-        }
+        ordena(vetor, 0, (vetor.length - 1));
         return vetor;
     }
 

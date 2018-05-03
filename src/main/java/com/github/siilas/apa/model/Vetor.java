@@ -13,6 +13,7 @@ public class Vetor {
 
     private Long time;
     private Integer size;
+    private boolean naoCalculado;
     private Algoritmos algoritmo;
     private Integer[] vetorOriginal;
     private Integer[] vetorOrdenado;

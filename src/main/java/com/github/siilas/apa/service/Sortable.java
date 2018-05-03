@@ -12,11 +12,15 @@ public interface Sortable {
     
     public default void sort(Vetor vetor) {
         val time = Stopwatch.createStarted();
-        val vetorOrdenado = specificSort(vetor.getVetorOriginal().clone());
+        try {
+            vetor.setVetorOrdenado(specificSort(vetor.getVetorOriginal().clone()));
+        } catch (StackOverflowError e) {
+            vetor.setNaoCalculado(true);
+        }
         val tempoDeExecucao = time.stop().elapsed(TimeUnit.NANOSECONDS);
         vetor.setAlgoritmo(getAlgoritmo());
         vetor.setTime(tempoDeExecucao);
-        vetor.setVetorOrdenado(vetorOrdenado);
+        
     }
     
     Integer[] specificSort(Integer[] vetor);

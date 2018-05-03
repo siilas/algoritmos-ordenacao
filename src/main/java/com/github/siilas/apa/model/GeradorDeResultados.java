@@ -33,7 +33,11 @@ public class GeradorDeResultados {
                 contadorColuna = 0;
                 linha.createCell(contadorColuna++).setCellValue(vetor.getAlgoritmo().getDescricao());
                 linha.createCell(contadorColuna++).setCellValue(vetor.getSize());
-                linha.createCell(contadorColuna++).setCellValue(vetor.getTime());
+                if (vetor.isNaoCalculado()) {
+                    linha.createCell(contadorColuna++).setCellValue("-");
+                } else {
+                    linha.createCell(contadorColuna++).setCellValue(vetor.getTime());
+                }
             }
         }
         File arquivoFinal = new File(System.getProperty("java.io.tmpdir") + File.separator + "resultados.xlsx");
